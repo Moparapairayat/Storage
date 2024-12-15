@@ -72,6 +72,7 @@ const createQueries = (
     Query.or([
       Query.equal("owner", [currentUser.$id]),
       Query.contains("users", [currentUser.email]),
+      Query.contains("AdminUsers", [currentUser.email]),
     ]),
   ];
 
@@ -111,7 +112,7 @@ export const getFiles = async ({
       queries,
     );
 
-    console.log({ files });
+    // console.log({ files });
     return parseStringify(files);
   } catch (error) {
     handleError(error, "Failed to get files");
@@ -146,7 +147,8 @@ export const renameFile = async ({
 
 export const updateFileUsers = async ({
   fileId,
-  emails,
+  userEmails,
+  adminEmails,
   path,
 }: UpdateFileUsersProps) => {
   const { databases } = await createAdminClient();
@@ -157,7 +159,8 @@ export const updateFileUsers = async ({
       appwriteConfig.filesCollectionId,
       fileId,
       {
-        users: emails,
+        AdminUsers: adminEmails,
+        users: userEmails,
       },
     );
 
