@@ -9,6 +9,12 @@ export const navItems = [
     icon: "/assets/icons/documents.svg",
     url: "/documents",
   },
+
+   {
+    name: "Audio",
+    icon: "/assets/icons/documents.svg",
+    url: "/documents",
+  },
   {
     name: "Images",
     icon: "/assets/icons/images.svg",
